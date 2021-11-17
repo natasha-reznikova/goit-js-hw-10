@@ -27,7 +27,7 @@ function onInput() {
 	    
 	if (!countryName) {
 		resetCountries();
-		return ("Oops, there is no country with that name");
+		return;
 	}
 	
 	apiFetch.fetchCountries(countryName)
