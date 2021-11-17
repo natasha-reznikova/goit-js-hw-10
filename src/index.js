@@ -1,4 +1,3 @@
-// import { NAMESPACE_ERR } from 'domexception';
 import './css/styles.css';
 import apiFetch from './api-fetch';
 
@@ -38,7 +37,7 @@ function inputOption(countries) {
 	    resetCountries()
 	
 	    if (countries.length > 10) {
-	        Notify.info('Too many matches found. Please enter a more specific name.')
+	        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
 	    }
 	
 	    if (countries.length >= 2 && countries.length < 10) {

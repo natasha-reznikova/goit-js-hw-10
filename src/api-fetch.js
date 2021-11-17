@@ -7,7 +7,7 @@ function fetchCountries(name) {
             if (!response.ok) {
 
                 if (response.status === 404) {
-                    Notify.failure("Oops, there is no country with that name");
+                   Notiflix.Notify.failure("Oops, there is no country with that name");
                 }
                 
                 throw new Error(response.statusText);
