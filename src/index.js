@@ -1,5 +1,7 @@
 import './css/styles.css';
 import apiFetch from './api-fetch';
+import Notiflix from 'notiflix';
+
 
 const searchBox = document.querySelector('#search-boxsearch-box')
 const countryList = document.querySelector(".country-list")
@@ -18,23 +20,28 @@ const debounce = require('lodash.debounce');
 	}
 
 	searchBox.addEventListener('input', debounce(onInput,DEBOUNCE_DELAY))
-function onInput (){
-	    resetCountries();
+function onInput() {
+	resetCountries();
 	
-	    const countryName = searchBox.value.trim();
+	const countryName = searchBox.value.trim();
 	    
-	    if (!countryName) {
-	        resetCountries();
-	        return;
-	    }
-	
-	    apiFetch.fetchCountries(countryName)
-	        .then(inputOption)
-	          .catch(error => { console.log(error) })
+	if (!countryName) {
+		resetCountries();
+		return ("Oops, there is no country with that name");
 	}
 	
+	apiFetch.fetchCountries(countryName)
+		.then(inputOption)
+		.catch(error => {
+			Notiflix.Notify.failure("Oops, there is no country with that name")
+		})
+}
+                
+              
+	
+	
 function inputOption(countries) {
-	    resetCountries()
+	resetCountries()
 	
 	    if (countries.length > 10) {
 	        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
